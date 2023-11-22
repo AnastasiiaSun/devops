@@ -27,13 +27,13 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: ./angular-frontend
+        working-directory: ./Angular-10-Spring-Boot-CRUD-App/
 
       - name: Test frontend
         run: npm test
-        working-directory: ./angular-frontend
+        working-directory: ./Angular-10-Spring-Boot-CRUD-App/
         
       - name: Build application
         run: npm run build
-        working-directory: ./angular-frontend
+        working-directory: ./Angular-10-Spring-Boot-CRUD-App/
 
