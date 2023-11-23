@@ -41,7 +41,7 @@ jobs:
         ports:
           - "5434:5432"
         options: --health-cmd "pg_isready -U postgres" --health-interval 10s --health-timeout 5s --health-retries 5
-
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -52,8 +52,13 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
           
+      - name: Install docker-compose-wait
+        run: |
+          wget https://raw.githubusercontent.com/ufoscout/docker-compose-wait/master/wait -O /usr/local/bin/wait
+          chmod +x /usr/local/bin/wait
+
       - name: Wait for database
-        run: wait-for-it localhost:5434 --timeout=60
+        run: wait localhost:5434 --timeout=60
 
       - name: Build and test backend
         run: mvn clean test
