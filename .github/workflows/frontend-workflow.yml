@@ -40,6 +40,8 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '17'
+      - name: Wait for database
+        run: wait-for-it database:5434 --timeout=60
 
       - name: Build and test backend
         run: mvn clean test
