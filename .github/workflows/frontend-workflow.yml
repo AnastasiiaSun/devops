@@ -35,14 +35,6 @@ jobs:
     
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Install wait-for-it
-        run: |
-          curl -sSL https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh | sh -x
-          chmod +x wait-for-it.sh
-          mv wait-for-it.sh /usr/local/bin
-
-      - name: Wait for database
-        run: wait-for-it database:5434 --timeout=60
 
       - name: Set up Java
         uses: actions/setup-java@v2
