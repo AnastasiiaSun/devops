@@ -15,6 +15,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Wait for database
+        run: wait-for-it database:5434 --timeout=60
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -51,11 +54,9 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '17'
-
+          
       - name: Build and test backend
-        run: |
-          cd Angular-10-Spring-Boot-CRUD-App/springboot-backend
-          mvn clean test
-
+        run: mvn clean test
+        working-directory: ./Angular-10-Spring-Boot-CRUD-App/springboot-backend
 
 
