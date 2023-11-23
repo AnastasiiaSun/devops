@@ -31,8 +31,18 @@ jobs:
   backend:
     runs-on: ubuntu-latest
 
+    services:
+      database:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: Employee
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: 123456a
+        ports:
+          - "5434:5432"
+        options: --health-cmd "pg_isready -U postgres" --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
-    
       - name: Checkout repository
         uses: actions/checkout@v2
 
@@ -41,8 +51,9 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '17'
+          
       - name: Wait for database
-        run: wait-for-it database:5434 --timeout=60
+        run: wait-for-it localhost:5434 --timeout=60
 
       - name: Build and test backend
         run: mvn clean test
