@@ -51,15 +51,6 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '17'
-          
-      - name: Install docker-compose-wait
-        run: |
-          wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh -O /usr/local/bin/wait
-          chmod +x /usr/local/bin/wait
-
-
-      - name: Wait for database
-        run: wait localhost:5434 --timeout=60
 
       - name: Build and test backend
         run: mvn clean test
