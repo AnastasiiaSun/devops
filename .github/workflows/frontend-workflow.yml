@@ -30,27 +30,10 @@ jobs:
 
   backend:
     runs-on: ubuntu-latest
-
-    services:
-      database:
-        image: postgres:latest
-        env:
-          POSTGRES_DB: Employee
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: 123456a
-        ports:
-          - "5434:5432"
-        options: --health-cmd "pg_isready -U postgres" --health-interval 10s --health-timeout 5s --health-retries 5
-      
+     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      
-      - name: Wait for database
-        run: |
-          wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh
-          chmod +x wait-for-it.sh
-          ./wait-for-it.sh database:5434 --timeout=60
           
       - name: Set up Java
         uses: actions/setup-java@v2
@@ -61,3 +44,4 @@ jobs:
       - name: Build and test backend
         run: mvn clean test
         working-directory: ./Angular-10-Spring-Boot-CRUD-App/springboot-backend
+ 
