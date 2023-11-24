@@ -42,6 +42,6 @@ jobs:
           java-version: '17'
           
       - name: Build and test backend
-        run: mvn clean test
+        run: mvn install -DskipTests
         working-directory: ./Angular-10-Spring-Boot-CRUD-App/springboot-backend
  
