@@ -2,12 +2,13 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  build-frontend:
+
+  frontend:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,3 +28,20 @@ jobs:
         run: npm run build
         working-directory: ./Angular-10-Spring-Boot-CRUD-App/angular-frontend
 
+  backend:
+    runs-on: ubuntu-latest
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+     
+          
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+          
+      - name: Build and test backend
+        run: mvn clean test
+        working-directory: ./Angular-10-Spring-Boot-CRUD-App/springboot-backend
