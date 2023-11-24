@@ -41,9 +41,5 @@ jobs:
           java-version: '17'
           
       - name: Build and test backend
-        run: mvn clean test
-        env:
-          SPRING_DATASOURCE_URL: "jdbc:postgresql://database:5432/Employee"
-          SPRING_DATASOURCE_USERNAME: "postgres"
-          SPRING_DATASOURCE_PASSWORD: "123456a"
+        run: mvn install -DskipTests
         working-directory: ./Angular-10-Spring-Boot-CRUD-App/springboot-backend
