@@ -23,25 +23,28 @@ jobs:
       - name: Install dependencies
         run: npm install
         working-directory: ./Angular-10-Spring-Boot-CRUD-App/angular-frontend
-        
+
       - name: Build application
         run: npm run build
         working-directory: ./Angular-10-Spring-Boot-CRUD-App/angular-frontend
 
   backend:
     runs-on: ubuntu-latest
-     
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-          
+
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
           java-version: '17'
-          
+
       - name: Build and test backend
         run: mvn clean test
+        env:
+          SPRING_DATASOURCE_URL: "jdbc:postgresql://database:5432/Employee"
+          SPRING_DATASOURCE_USERNAME: "postgres"
+          SPRING_DATASOURCE_PASSWORD: "123456a"
         working-directory: ./Angular-10-Spring-Boot-CRUD-App/springboot-backend
- 
