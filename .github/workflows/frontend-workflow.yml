@@ -30,11 +30,10 @@ jobs:
 
   backend:
     runs-on: ubuntu-latest
-      
+     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-     
           
       - name: Set up Java
         uses: actions/setup-java@v2
@@ -45,3 +44,4 @@ jobs:
       - name: Build and test backend
         run: mvn clean test
         working-directory: ./Angular-10-Spring-Boot-CRUD-App/springboot-backend
+ 
