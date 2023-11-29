@@ -54,4 +54,5 @@ jobs:
           context: .
           file: ./Angular-10-Spring-Boot-CRUD-App/angular-frontend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/devops:latest
+          
