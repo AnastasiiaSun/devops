@@ -27,10 +27,14 @@ jobs:
         run: npm run build
         working-directory: ./Angular-10-Spring-Boot-CRUD-App/angular-frontend
 
-jobs:
-  build:
+  docker:
     runs-on: ubuntu-latest
+
+    needs: frontend
+
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
       -
         name: Checkout
         uses: actions/checkout@v4
@@ -48,6 +52,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./Dockerfile
+          file: ./Angular-10-Spring-Boot-CRUD-App/angular-frontend/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops:latest
